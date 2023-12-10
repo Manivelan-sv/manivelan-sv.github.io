@@ -223,8 +223,7 @@ header .navbar ul li a:hover {
 }
 
 .home .btn {
-  margin-top: 2rem;
-  margin-left: auto;
+  margin-top: 1rem;
   position: center;
   line-height: 0;
   padding: 1.6rem 3rem;
@@ -255,7 +254,7 @@ header .navbar ul li a:hover {
 /* social icons start */
 .socials {
   position: relative;
-  margin-top: 4rem;
+  margin-top: 9rem;
 }
 .socials .social-icons {
   padding-left: 0;
@@ -1190,7 +1189,39 @@ form .button-area {
     padding: 1.2rem;
   }
 }
+/* footer section ends */
 
+/* common media queries starts*/
+@media (max-width: 450px) {
+  html {
+    font-size: 55%;
+  }
+  body {
+    padding-right: 0;
+  }
+  section {
+    padding: 2rem;
+  }
+}
+/* common media queries ends*/
+
+/* scroll top starts */
+#scroll-top {
+  position: fixed;
+  top: -140%;
+  right: 2rem;
+  padding: 1rem 1.5rem;
+  font-size: 2rem;
+  background: #ffae00;
+  color: rgb(13, 0, 44);
+  border-radius: 50%;
+  transition: 1s linear;
+  z-index: 1000;
+}
+#scroll-top.active {
+  top: calc(100% - 12rem);
+}
+/* scroll top ends */
 
 
 .kodama {
