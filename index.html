@@ -81,19 +81,16 @@
         <span class="tag">Research Scholar<br>Department of Physics,<br>M. R. Government Arts College (Affiliated to Bharathidasan University), Mannargudi, Tamilnadu, India - 614 001.</span>
         
         <p align="justify">I am Manivelan Saminathan Vasuki, Research Scholar specializing in Nonlinear Dynamics and Chaos, delving deep into Physics through computational insights.My research focuses on unraveling natural complexities using computational methods. I'm passionate about deciphering order in chaos, exploring emergent behaviors, and understanding nonlinear dynamics. I thrive on navigating these complexities, driven by curiosity to contribute to Computational Physics. I also study Extreme Value Theory, investigating statistical properties and dynamics of extreme events across various systems. By applying EVT principles, I aim to comprehend their occurrence and impact deeply. Guided by my mentor, Dr. I. Manimehan & Dr. K. Thamilmaran, provides invaluable mentorship, extending beyond academia, shaping my research journey. Motivated by an insatiable curiosity, I aim to contribute meaningfully to our research under their guidance.</p>
-          <p align="justify">I'm ready to engage in collaborative work without attribution. Research, for me, is all about enjoyable and enriching collaboration.</p><br>
+          <p align="justify">I'm ready to engage in discussions and work, even without attribution. For me, research is all about discovering enjoyable new things and fostering enriching connections.</p><br>
          
-          
-         
-          
-          
-
         <div class="socials">
           <ul class="social-icons">
             <li><a class="linkedin" aria-label="LinkedIn" href="https://www.linkedin.com/in/manivelan-s-v" target="_blank"><i class="fab fa-linkedin"></i></a></li> 
             <li><a class="google-scholar" aria-label="Google Scholar" href="https://scholar.google.com/citations?hl=en&user=-_SuNEQAAAAJ" target="_blank"><i class="fas fa-graduation-cap"></i></a></li>
+            <li><a class="orcid" aria-label="ORCID" href="https://orcid.org/0009-0006-7818-1923" target="_blank"><i class="fab fa-orcid"></i></a></li>
             <li><a class="telegram" aria-label="Telegram" href="https://t.me/Manivelan" target="_blank"><i class="fab fa-telegram-plane"></i></a></li>
             <li><a class="instagram" aria-label="Instagram" href="https://instagram.com/ma_ni_ve_la_n"><i class="fab fa-instagram" target="_blank"></i></a></li>
+            <a class="dev" aria-label="Mail" href="mailto:manivelan.saminathan@gmail.com"><i class="fas fa-envelope" target="_blank"></i></a>
           </ul>
         </div>
     </div>
@@ -102,21 +99,21 @@
 <!-- about section ends -->
 
 
-<!-- ResearchExperience section starts 
+<!-- ResearchExperience section starts -->
 <section class="ResearchExperience" id="ResearchExperience">
   <br><br><br><br><br>
   <h2 class="heading"><i class="fas fa-graduation-cap"></i>Research<span> Experience</span></h2>
-
-<h2 style="color: #ff9f55;">No. of Publications: <span id="publication-count"></span></h2>
-<h2 style="color: #ff9f55;">h-Index: <span id="hIndex-count"></span></h2>
-<h2 style="color: #ff9f55;">No. of Citations: <span id="citationCount-count"></span></h2>
-
+  <br><br>
+<h2 align="center" style="color: #ff9f55;">No. of Publications: <span id="publication-count"></span></h2>
+<h2 align="center" style="color: #ff9f55;">h-Index: <span id="hIndex-count"></span></h2>
+<h2 align="center" style="color: #ff9f55;">No. of Citations: <span id="citationCount-count"></span></h2>
+<br><br>
 <div class="timeline" id="publication-timeline">
 </div>
 
 <script>
     // Fetch data from the API with additional paper details
-    fetch('https://api.semanticscholar.org/graph/v1/author/2221815?fields=name,hIndex,citationCount,paperCount,papers.journal,papers.citationCount,papers.authors,papers.title,papers.externalIds')
+    fetch('https://api.semanticscholar.org/graph/v1/author/2284295334?fields=name,hIndex,citationCount,paperCount,papers.journal,papers.citationCount,papers.authors,papers.title,papers.externalIds')
         .then(response => response.json())
         .then(data => {
             // Update the No. of Publications count
@@ -145,9 +142,20 @@
                                 <p style="color: #ede9e5;">${authorNames}</p>
                                 <h2>Citation: ${paper.citationCount}</h2>
                                 <h3><span>Read On:</span> <a href="https://doi.org/${doi}">${journalName}</a></h3>
+                                <p><span>Authors </span> <a href="./assets/publication/${paper.title}.pdf">Preprint Version</a></p>
                             </div>
                         </div>
                     </div>
+                    <div class="container ${index % 2 === 0 ? 'left' : 'right'}">
+                      <div class="content">
+                        <div class="tag">
+                          <h2 style="text-align: left;; font-size: 17px;">Investigating Extreme Events Occurrences In Dynamical Systems (Work in progress)</h2>
+                          </div>
+                          <div class="desc">
+                            <p style="color: #ede9e5;">S.V. Manivelan, I. Manimehan</p>
+                            </div>
+                            </div>
+                            </div>
                 `;
             }).join('');
         })
@@ -155,41 +163,7 @@
             console.error('Error fetching data:', error);
         });
 </script>
-</section>-->
-
-<section class="ResearchExperience" id="ResearchExperience">
-  <br><br><br><br><br>
-  <h2 class="heading"><i class="fas fa-graduation-cap"></i>Research<span> Experience</span></h2>
-  <br><br><br>
-<h2 align="center" style="color: #ff9f55;">No. of Publications: <span>1</span></h2>
-<h2 align="center" style="color: #ff9f55;">h-Index: -<span></span></h2>
-<h2 align="center" style="color: #ff9f55;">No. of Citations: -<span></span></h2>
-<br><br><br><br><br>
-<div class="timeline" id="publication-timeline">
-  <div class="container right">
-    <div class="content">
-        <div class="tag">
-            <h2 style="text-align: left;; font-size: 17px;">Dynamical instabilities cause extreme events in a theoretical Brusselator model</h2>
-        </div>
-        <div class="desc">
-            <p style="color: #ede9e5;">S.V. Manivelan, S. Sabarathinam, K. Thamilmaran , I. Manimehan</p>
-            <h3><span>Read On:</span> <a href="https://authors.elsevier.com/c/1ibLn3QI~FdUOs">Chaos, Solitons & Fractals</a></h3>
-            <p><span>Authors </span> <a href="./assets/publication/Publication_1.pdf">Preprint Version</a></p>
-        </div>
-    </div>
-</div>
-  <div class="container left">
-    <div class="content">
-        <div class="tag">
-            <h2 style="text-align: left;; font-size: 17px;">Investigating Extreme Events Occurrences In Dynamical Systems (Work in progress)</h2>
-        </div>
-        <div class="desc">
-            <p style="color: #ede9e5;">S.V. Manivelan, I. Manimehan</p>
-        </div>
-    </div>
-</div></div>
 </section>
-
 
 <!-- PresentWork section starts -->
 <section class="education" id="PresentWork">
@@ -470,6 +444,7 @@
         <br>
         <a class="linkedin" aria-label="LinkedIn" href="https://www.linkedin.com/in/manivelan-s-v" target="_blank"><i class="fab fa-linkedin"></i></a>
         <a class="google-scholar" aria-label="Google Scholar" href="https://scholar.google.com/citations?hl=en&user=-_SuNEQAAAAJ" target="_blank"><i class="fas fa-graduation-cap"></i></a>
+        <li><a class="orcid" aria-label="ORCID" href="https://orcid.org/0009-0006-7818-1923" target="_blank"><i class="fab fa-orcid"></i></a></li>
         <a class="telegram" aria-label="Telegram" href="https://t.me/Manivelan" target="_blank"><i class="fab fa-telegram-plane"></i></a>
         <a class="instagram" aria-label="Instagram" href="https://instagram.com/ma_ni_ve_la_n"><i class="fab fa-instagram" target="_blank"></i></a>
         <a class="dev" aria-label="Mail" href="mailto:manivelan.saminathan@gmail.com"><i class="fas fa-envelope" target="_blank"></i></a>
