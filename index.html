@@ -202,7 +202,7 @@
         // Load CSV file
         $.ajax({
           type: "GET",
-          url: "collaborators.csv",
+          url: "./collaborators.csv",
           dataType: "text",
           success: function(data) {
             processData(data);
