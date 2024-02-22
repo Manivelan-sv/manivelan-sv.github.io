@@ -197,64 +197,41 @@
 
   <div class="box-container">
 
-     <div class="box tilt">
-      <img draggable="false" src="./assets/images/Collaborators.png" alt="" />
-      <div class="content">
-        <div class="tag">
-        <h3>Dr. I. Manimehan</h3>
-        </div>
-        <div class="desc">
-          <p>Asst. Prof of Physics, M. R. Govt. Arts College, Mannargudi, India - 614001</p>
-          <div class="btns">
-            
-            <a href="https://scholar.google.com/citations?user=Ct8qWFQAAAAJ&hl" class="btn" target="_blank">Google  Scholar <i class="fas fa-graduation-cap"></i></a>
-          </div>
-        </div>
-      </div>
-    </div> 
-    <div class="box tilt">
-      <img draggable="false" src="./assets/images/collaborators.PNG" alt="" />
-      <div class="content">
-        <div class="tag">
-        <h3>Dr. K. Thamilmaran</h3>
-        </div>
-        <div class="desc">
-          <p>Sr scientist, center for Nonlinear systems, C.I.T , Chennai.<br>Professor, Bharathidasan University. Trichy.</p>
-          <div class="btns">
-            <a href="https://scholar.google.com/citations?user=anu3xtgAAAAJ" class="btn" target="_blank">Google  Scholar <i class="fas fa-graduation-cap"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="box tilt">
-      <img draggable="false" src="./assets/images/collaborators.PNG" alt="" />
-      <div class="content">
-        <div class="tag">
-        <h3>Dr. S. Sabarathinam</h3>
-        </div>
-        <div class="desc">
-          <p>Laboratory of Complex Systems Modeling and Control, HSE University, Moscow, Russia</p>
-          <div class="btns">
-            <a href="https://scholar.google.com/citations?user=ANWFuZIAAAAJ" class="btn" target="_blank">Google  Scholar <i class="fas fa-graduation-cap"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="box tilt">
-      <img draggable="false" src="./assets/images/collaborators.PNG" alt="" />
-      <div class="content">
-        <div class="tag">
-        <h3>Dr. K. Suresh</h3>
-        </div>
-        <div class="desc">
-          <p>center for Nonlinear systems, Chennai Institute of Technology, India - 600069</p>
-          <div class="btns">
-            
-            <a href="https://scholar.google.com/citations?user=Z4LkFvEAAAAJ" class="btn" target="_blank">Google  Scholar <i class="fas fa-graduation-cap"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <script>
+      $(document).ready(function(){
+        // Load CSV file
+        $.ajax({
+          type: "GET",
+          url: "collaborators.csv",
+          dataType: "text",
+          success: function(data) {
+            processData(data);
+          }
+        });
+      
+        // Process CSV data and generate HTML
+        function processData(csvData) {
+          var lines = csvData.split("\n");
+          var htmlContent = "";
+          for (var i = 0; i < lines.length; i++) {
+            var cols = lines[i].split(",");
+            if (cols.length >= 3) {
+              var name = cols[0].trim();
+              var organization = cols[1].trim();
+              var googleScholarLink = cols[2].trim();
+              htmlContent += '<div class="box tilt">';
+              htmlContent += '<img draggable="false" src="./assets/images/Collaborators.png" alt="" />';
+              htmlContent += '<div class="content">';
+              htmlContent += '<div class="tag"><h3>' + name + '</h3></div>';
+              htmlContent += '<div class="desc"><p>' + organization + '</p>';
+              htmlContent += '<div class="btns"><a href="' + googleScholarLink + '" class="btn" target="_blank">Google Scholar <i class="fas fa-graduation-cap"></i></a></div>';
+              htmlContent += '</div></div></div>';
+            }
+          }
+          $("#collaboratorsContainer").html(htmlContent);
+        }
+      });
+      </script>
     <!--<div class="box tilt">
       <img draggable="false" src="./assets/images/collaborators.PNG" alt="" />
       <div class="content">
