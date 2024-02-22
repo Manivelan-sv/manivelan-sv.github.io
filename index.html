@@ -193,99 +193,57 @@
 
 <section class="work" id="ResearchCollaborators">
   <br><br><br><br><br>
-  <h2 class="heading"><i class="fas fa-user-friends"></i>  Research <span> Collaborators</span></h2>
+  <h2 class="heading"><i class="fas fa-user-friends"></i> Research <span>Collaborators</span></h2>
 
-  <div class="box-container">
+  <div class="box-container"></div>
 
-    <script>
-      $(document).ready(function(){
-        // Load CSV file
-        $.ajax({
-          type: "GET",
-          url: "./collaborators.csv",
-          dataType: "text",
-          success: function(data) {
-            processData(data);
-          }
-        });
-      
-        // Process CSV data and generate HTML
-        function processData(csvData) {
-          var lines = csvData.split("\n");
-          var htmlContent = "";
-          for (var i = 0; i < lines.length; i++) {
-            var cols = lines[i].split(",");
-            if (cols.length >= 3) {
-              var name = cols[0].trim();
-              var organization = cols[1].trim();
-              var googleScholarLink = cols[2].trim();
-              htmlContent += '<div class="box tilt">';
-              htmlContent += '<img draggable="false" src="./assets/images/Collaborators.png" alt="" />';
-              htmlContent += '<div class="content">';
-              htmlContent += '<div class="tag"><h3>' + name + '</h3></div>';
-              htmlContent += '<div class="desc"><p>' + organization + '</p>';
-              htmlContent += '<div class="btns"><a href="' + googleScholar + '" class="btn" target="_blank">Google Scholar <i class="fas fa-graduation-cap"></i></a></div>';
-              htmlContent += '</div></div></div>';
-            }
-          }
-          $("#ResearchCollaborators").html(htmlContent);
-        }
-      });
-      </script>
-    <!--<div class="box tilt">
-      <img draggable="false" src="./assets/images/collaborators.PNG" alt="" />
-      <div class="content">
-        <div class="tag">
-        <h3>Collaborators name</h3>
-        </div>
-        <div class="desc">
-          <p>Collaborators info</p>
-          <div class="btns">
-            
-            <a href="https://scholar.google.com" class="btn" target="_blank">Google  Scholar <i class="fas fa-graduation-cap"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="box tilt">
-      <img draggable="false" src="./assets/images/collaborators.PNG" alt="" />
-      <div class="content">
-        <div class="tag">
-        <h3>Collaborators name</h3>
-        </div>
-        <div class="desc">
-          <p>Collaborators info</p>
-          <div class="btns">
-            <a href="https://scholar.google.com" class="btn" target="_blank">Google  Scholar <i class="fas fa-graduation-cap"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="box tilt">
-      <img draggable="false" src="./assets/images/collaborators.PNG" alt="" />
-      <div class="content">
-        <div class="tag">
-        <h3>Collaborators name</h3>
-        </div>
-        <div class="desc">
-          <p>Collaborators info</p>
-          <div class="btns">
-            <a href="https://scholar.google.com" class="btn" target="_blank">Google  Scholar <i class="fas fa-graduation-cap"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>-->
-</div>
-<br><br><br><br><br>
-
-<div class="resumebtn">
-  <center><a href="https://github.com/" target="_blank" class="btn" style="color: #000000;"><span>Data Repositories*</span>
-      <i class="fas fa-database"></i>
-  </a></center>
-</div><br><br><br>
-<center><p style="color: #FFFFFf;">* If access to any data associated with my research is needed, I am open to sharing it in accordance with regulations and without conflicts of interest.</p></center>
-
+  <br><br><br><br><br>
+  <div class="resumebtn">
+    <center><a href="https://github.com/" target="_blank" class="btn" style="color: #000000;"><span>Data Repositories*</span>
+        <i class="fas fa-database"></i>
+    </a></center>
+  </div><br><br><br>
+  <center><p style="color: #FFFFFf;">* If access to any data associated with my research is needed, I'm open to sharing it in accordance with regulations and without conflicts of interest.</p></center>
+  
 </section>
+
+<script>
+  $(document).ready(function(){
+    // Load CSV file
+    $.ajax({
+      type: "GET",
+      url: "collaborators.csv",
+      dataType: "text",
+      success: function(data) {
+        processData(data);
+      }
+    });
+
+    // Process CSV data and generate HTML
+    function processData(csvData) {
+      var lines = csvData.split("\n");
+      var htmlContent = "";
+      for (var i = 0; i < lines.length; i++) {
+        var cols = lines[i].split(",");
+        if (cols.length >= 3) {
+          var name = cols[0].trim();
+          var organization = cols[1].trim();
+          var googleScholarLink = cols[2].trim();
+          htmlContent += '<div class="box tilt">';
+          htmlContent += '<img draggable="false" src="./assets/images/Collaborators.png" alt="" />';
+          htmlContent += '<div class="content">';
+          htmlContent += '<div class="tag"><h3>' + name + '</h3></div>';
+          htmlContent += '<div class="desc"><p>' + organization + '</p>';
+          htmlContent += '<div class="btns"><a href="' + googleScholarLink + '" class="btn" target="_blank">Google Scholar <i class="fas fa-graduation-cap"></i></a></div>';
+          htmlContent += '</div></div></div>';
+        }
+      }
+      $(".box-container").html(htmlContent);
+    }
+  });
+</script>
+
+
 
 
 <!-- skills section starts -->
