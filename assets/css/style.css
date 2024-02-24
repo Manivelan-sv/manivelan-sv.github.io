@@ -254,7 +254,7 @@ header .navbar ul li a:hover {
 /* social icons start */
 .socials {
   position: relative;
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 .socials .social-icons {
   padding-left: 0;
@@ -599,7 +599,7 @@ header .navbar ul li a:hover {
   padding: 1rem 0;
 }
 .education h6 {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   color: #f8832a;
   font-weight: 600;
   padding: 1rem 0;
