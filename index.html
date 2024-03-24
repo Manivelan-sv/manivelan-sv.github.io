@@ -103,7 +103,7 @@
 
 <script>
     // Fetch data from the API with additional paper details
-    fetch('https://api.semanticscholar.org/graph/v1/author/2284295334?fields=name,hIndex,citationCount,paperCount,papers.journal,papers.citationCount,papers.authors,papers.title,papers.externalIds')
+    fetch('https://api.semanticscholar.org/graph/v1/author/2284295334?fields=name,hIndex,citationCount,paperCount,papers.journal,papers.citationCount,papers.authors,papers.title,papers.externalIds&key=pHi0AI6CMk3CPKNi5EOr55QCAeGL1eCWa4Xl6abx')
         .then(response => response.json())
         .then(data => {
             // Update the No. of Publications count
