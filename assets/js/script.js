@@ -285,8 +285,8 @@ window.addEventListener("load", function() {
                             <div class="desc">
                                 <p style="color: #ede9e5;">${authorNames}</p>
                                 <h2>Citation: ${paper.citationCount}</h2>
-                                <h3><span>Read On:</span> <a href="https://doi.org/${doi}">${journalName}</a></h3>
-                                <p><span>Author Preprint Version </span> <a href="./assets/publication/${paper.title}.pdf">PDF</a></p>
+                                <h3><span>Read On:</span> <a href="https://doi.org/${doi}" target="_blank">${journalName}</a></h3>
+                                <p><span>Author Preprint Version </span> <a href="./assets/publication/${paper.title}.pdf" target="_blank">PDF</a></p>
                             </div>
                         </div>
                     </div>
