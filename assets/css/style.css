@@ -476,8 +476,13 @@ header .navbar ul li a:hover {
   transition: 0.2s;
 }
 .skills .container .bar:hover {
-  box-shadow: 0 8px 10px rgba(0, 2, 68, 0.8) !important;
-  background-color: rgba(0, 0, 0, 0.9) !important;
+  box-shadow: 
+    0 8px 10px rgba(73, 73, 214, 0.8),
+    0 -8px 10px rgba(73, 73, 214, 0.8),
+    -8px 0 10px rgba(73, 73, 214, 0.8),
+    8px 0 10px rgba(73, 73, 214, 0.8)!important;
+
+  background-color: rgb(0, 0, 0) !important;
 }
 .skills .container .bar .info {
   display: flex;
