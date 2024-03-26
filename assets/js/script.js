@@ -135,7 +135,7 @@ window.addEventListener("load", function() {
             setTimeout(() => {
             preloader.style.display = "none";
             content.style.display = "block";
-        }, 2000); // 5000 milliseconds = 5 seconds
+        }, 1500); // 5000 milliseconds = 5 seconds
     })
     .catch(error => {
         console.error('Error fetching data:', error);
