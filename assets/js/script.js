@@ -307,13 +307,14 @@ window.addEventListener("load", function() {
             // Once data is fetched and displayed, set the flag to true
             dataLoaded = true;
             
-            // Hide preloader and show content
+            setTimeout(() => {
             preloader.style.display = "none";
             content.style.display = "block";
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
+        }, 5000); // 5000 milliseconds = 5 seconds
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
 
     // Reload the page if data fetch takes more than 3 seconds
     setTimeout(() => {
