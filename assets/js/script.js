@@ -129,6 +129,42 @@ window.addEventListener("load", function() {
                 `;
             }).join('');
 
+            fetch('./assets/collabators/collaborators.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    const collaboratorsContainer = document.querySelector('.box-container');
+
+    data.forEach(collaborator => {
+      const collaboratorBox = document.createElement('div');
+      collaboratorBox.className = 'box tilt';
+      collaboratorBox.innerHTML = `
+        <img draggable="false" src="./assets/collabators/Collaborators.png" alt="" />
+        <div class="content">
+          <div class="tag">
+            <h3>${collaborator.name}</h3>
+          </div>
+          <div class="desc">
+            <p>${collaborator.designation}</p>
+            <p>${collaborator.affiliation}</p>
+            <div class="btns">
+              <a href="${collaborator.scholar_profile}" class="btn" target="_blank">Google Scholar <i class="fas fa-graduation-cap"></i></a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      collaboratorsContainer.appendChild(collaboratorBox);
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching collaborators:', error);
+  });
+            
             // Once data is fetched and displayed, set the flag to true
             dataLoaded = true;
             
