@@ -68,6 +68,86 @@ document.addEventListener('visibilitychange',
         }
     });
 
+window.addEventListener("load", function() {
+    const preloader = document.getElementById("preloader");
+    const content = document.getElementById("content");
+    
+    // Set a flag to track whether the data has been loaded successfully
+    let dataLoaded = false;
+
+    // Fetch data from the API with additional paper details
+    fetch('https://api.semanticscholar.org/graph/v1/author/2284295334?fields=name,hIndex,citationCount,paperCount,papers.journal,papers.citationCount,papers.authors,papers.title,papers.externalIds', {
+        headers: {
+            'x-api-key': 'pHi0AI6CMk3CPKNi5EOr55QCAeGL1eCWa4Xl6abx'
+        }
+    })
+
+
+        .then(response => response.json())
+        .then(data => {
+            // Update the No. of Publications count
+            document.getElementById('publication-count').textContent = data.paperCount;
+            document.getElementById('hIndex-count').textContent = data.hIndex;
+            document.getElementById('citationCount-count').textContent = data.citationCount;
+            // Update the HTML content with the retrieved data
+            const timelineElement = document.getElementById('publication-timeline');
+            timelineElement.innerHTML = data.papers.map((paper, index) => {
+                // Extract author names from the array of objects
+                const authorNames = paper.authors.map(author => author.name).join(', ');
+
+                // Extract journal name
+                const journalName = paper.journal && paper.journal.name ? paper.journal.name : 'Unknown Journal';
+
+                // Extract DOI from externalIds if available
+                const doi = paper.externalIds && paper.externalIds.DOI ? paper.externalIds.DOI : 'No DOI available';
+
+                return `
+                    <div class="container ${index % 2 === 0 ? 'right' : 'left'}">
+                        <div class="content">
+                            <div class="tag">
+                                <h2 style="text-align: left; font-size: 17px;">${paper.title}</h2>
+                            </div>
+                            <div class="desc">
+                                <p style="color: #ede9e5;">${authorNames}</p>
+                                <h2>Citation: ${paper.citationCount}</h2>
+                                <h3><span>Read On:</span> <a href="https://doi.org/${doi}" target="_blank">${journalName}</a></h3>
+                                <p><span>Author Preprint Version </span> <a href="./assets/publication/${paper.title}.pdf" target="_blank">PDF</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container ${index % 2 === 0 ? 'left' : 'right'}">
+                      <div class="content">
+                        <div class="tag">
+                          <h2 style="text-align: left;; font-size: 17px;">Investigating Extreme Events Occurrences In Dynamical Systems (Work in progress)</h2>
+                          </div>
+                          <div class="desc">
+                            <p style="color: #ede9e5;">S.V. Manivelan, I. Manimehan</p>
+                            </div>
+                            </div>
+                            </div>
+                `;
+            }).join('');
+
+            // Once data is fetched and displayed, set the flag to true
+            dataLoaded = true;
+            
+            setTimeout(() => {
+            preloader.style.display = "none";
+            content.style.display = "block";
+        }, 3000); // 5000 milliseconds = 5 seconds
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
+    // Reload the page if data fetch takes more than 3 seconds
+    setTimeout(() => {
+        if (!dataLoaded) {
+            location.reload();
+        }
+    }, 4000); 
+});
 
 // <!-- typed js effect starts -->
 var typed = new Typed(".typing-text", {
@@ -243,83 +323,4 @@ srtop.reveal('.ResearchExperience .timeline .container', { interval: 400 });
 srtop.reveal('.contact .container', { delay: 400 });
 srtop.reveal('.contact .container .form-group', { delay: 400 });
 
-window.addEventListener("load", function() {
-    const preloader = document.getElementById("preloader");
-    const content = document.getElementById("content");
-    
-    // Set a flag to track whether the data has been loaded successfully
-    let dataLoaded = false;
 
-    // Fetch data from the API with additional paper details
-    fetch('https://api.semanticscholar.org/graph/v1/author/2284295334?fields=name,hIndex,citationCount,paperCount,papers.journal,papers.citationCount,papers.authors,papers.title,papers.externalIds', {
-        headers: {
-            'x-api-key': 'pHi0AI6CMk3CPKNi5EOr55QCAeGL1eCWa4Xl6abx'
-        }
-    })
-
-
-        .then(response => response.json())
-        .then(data => {
-            // Update the No. of Publications count
-            document.getElementById('publication-count').textContent = data.paperCount;
-            document.getElementById('hIndex-count').textContent = data.hIndex;
-            document.getElementById('citationCount-count').textContent = data.citationCount;
-            // Update the HTML content with the retrieved data
-            const timelineElement = document.getElementById('publication-timeline');
-            timelineElement.innerHTML = data.papers.map((paper, index) => {
-                // Extract author names from the array of objects
-                const authorNames = paper.authors.map(author => author.name).join(', ');
-
-                // Extract journal name
-                const journalName = paper.journal && paper.journal.name ? paper.journal.name : 'Unknown Journal';
-
-                // Extract DOI from externalIds if available
-                const doi = paper.externalIds && paper.externalIds.DOI ? paper.externalIds.DOI : 'No DOI available';
-
-                return `
-                    <div class="container ${index % 2 === 0 ? 'right' : 'left'}">
-                        <div class="content">
-                            <div class="tag">
-                                <h2 style="text-align: left; font-size: 17px;">${paper.title}</h2>
-                            </div>
-                            <div class="desc">
-                                <p style="color: #ede9e5;">${authorNames}</p>
-                                <h2>Citation: ${paper.citationCount}</h2>
-                                <h3><span>Read On:</span> <a href="https://doi.org/${doi}" target="_blank">${journalName}</a></h3>
-                                <p><span>Author Preprint Version </span> <a href="./assets/publication/${paper.title}.pdf" target="_blank">PDF</a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container ${index % 2 === 0 ? 'left' : 'right'}">
-                      <div class="content">
-                        <div class="tag">
-                          <h2 style="text-align: left;; font-size: 17px;">Investigating Extreme Events Occurrences In Dynamical Systems (Work in progress)</h2>
-                          </div>
-                          <div class="desc">
-                            <p style="color: #ede9e5;">S.V. Manivelan, I. Manimehan</p>
-                            </div>
-                            </div>
-                            </div>
-                `;
-            }).join('');
-
-            // Once data is fetched and displayed, set the flag to true
-            dataLoaded = true;
-            
-            setTimeout(() => {
-            preloader.style.display = "none";
-            content.style.display = "block";
-        }, 5000); // 5000 milliseconds = 5 seconds
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-    });
-
-    // Reload the page if data fetch takes more than 3 seconds
-    setTimeout(() => {
-        if (!dataLoaded) {
-            location.reload();
-        }
-    }, 4000); // 3000 milliseconds = 3 seconds
-});
