@@ -1534,11 +1534,11 @@ form .button-area {
 }
 
 .carousel-control-prev {
-  left: 0;
+  right: 95%;
 }
 
 .carousel-control-next {
-  right: 0;
+  left: 95%;
 }
 
 .carousel-control-next-icon,
