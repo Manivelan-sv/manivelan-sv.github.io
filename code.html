@@ -45,29 +45,21 @@
         }
 
         /* Code block styling */
-        pre code {
+        pre {
             white-space: pre-wrap;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            overflow-x: auto;
         }
 
-        .hljs-ln {
-            border-right: 1px solid #ccc;
-            padding-right: 10px;
-        }
-
-        .hljs-ln-numbers {
-            margin: 0;
-            padding: 0 5px;
-            color: #999;
-            list-style-type: none;
-            text-align: right;
-        }
-
-        .hljs-ln-numbers li {
-            line-height: 1.4em;
-        }
-
-        .hljs-ln td {
-            padding: 0 10px;
+        pre code {
+            display: inline;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
         }
     </style>
 </head>
@@ -90,7 +82,7 @@
         // GitHub repository details
         const owner = "Manivelan-sv";
         const repo = "manivelan-sv.github.io";
-        const path = "Code";
+        const path = "assets/publication";
 
         // GitHub API endpoint to fetch contents of a directory
         const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
@@ -176,7 +168,7 @@
                 .then(response => response.text())
                 .then(content => {
                     // Display content in modal
-                    document.getElementById('file-content').innerHTML = content;
+                    document.getElementById('file-content').innerHTML = `<pre><code>${content}</code></pre>`;
                     // Show modal
                     document.getElementById('myModal').style.display = "block";
                     // Highlight code syntax
