@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repository Showcase</title>
+</head>
+<body>
+    <h1>My GitHub Repositories</h1>
+    <ul id="repositories"></ul>
+
+    <script>
+        // GitHub username
+        const username = "your_username";
+
+        // GitHub API endpoint to fetch repositories
+        const apiUrl = `https://api.github.com/users/${username}/repos`;
+
+        // Fetch repositories from GitHub API
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Loop through repositories and create list items
+                data.forEach(repo => {
+                    const repository = document.createElement('li');
+                    repository.innerHTML = `<a href="${repo.html_url}" target="_blank">${repo.name}</a>`;
+                    document.getElementById('repositories').appendChild(repository);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching repositories:', error);
+            });
+    </script>
+</body>
+</html>
