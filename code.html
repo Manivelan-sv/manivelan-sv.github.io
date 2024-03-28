@@ -9,11 +9,13 @@
     <h1>Publication Files</h1>
     <ul id="files"></ul>
 
+    <div id="file-content"></div>
+
     <script>
         // GitHub repository details
         const owner = "Manivelan-sv";
         const repo = "manivelan-sv.github.io";
-        const path = "assets/publication";
+        const path = "assets";
 
         // GitHub API endpoint to fetch contents of a directory
         const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
@@ -28,8 +30,8 @@
                         const listItem = document.createElement('li');
                         const link = document.createElement('a');
                         link.textContent = file.name;
-                        link.href = file.html_url;
-                        link.target = "_blank";
+                        link.href = "#";
+                        link.onclick = () => displayFileContent(file.path);
                         listItem.appendChild(link);
                         document.getElementById('files').appendChild(listItem);
                     }
@@ -38,6 +40,19 @@
             .catch(error => {
                 console.error('Error fetching files:', error);
             });
+
+        // Function to display file content
+        function displayFileContent(filePath) {
+            const fileUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/${filePath}`;
+            fetch(fileUrl)
+                .then(response => response.text())
+                .then(content => {
+                    document.getElementById('file-content').innerHTML = `<pre>${content}</pre>`;
+                })
+                .catch(error => {
+                    console.error('Error fetching file content:', error);
+                });
+        }
     </script>
 </body>
 </html>
