@@ -6,7 +6,51 @@
     <title>Publication Files</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome CSS -->
     <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  transition: all 0.2s linear;
+}
+html {
+  font-size: 62.5%;
+  color: #fff;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+body {
+  background: #000000;
+  font-family: "Poppins", sans-serif;
+}
+
+*::selection {
+  background: #2b3dda;
+  color: #fff;
+}
+
+html {
+  font-size: 125%;
+  overflow-x: hidden;
+}
+html::-webkit-scrollbar {
+  width: 0.8rem;
+}
+html::-webkit-scrollbar-track {
+  background: rgb(156, 142, 160);
+}
+html::-webkit-scrollbar-thumb {
+  background: #ffffff;
+}
+
         /* Style for modal */
         .modal {
             display: none;
@@ -60,6 +104,10 @@
             font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
             font-size: 16px;
             line-height: 1.5;
+        }
+
+        .folder-icon {
+            margin-right: 10px; /* Adjust margin as needed */
         }
     </style>
 </head>
@@ -143,6 +191,13 @@
                         fetchDirectoryContents(item.url);
                     }
                 };
+
+                if (item.type === "dir") {
+                    const folderIcon = document.createElement('i');
+                    folderIcon.classList.add('folder-icon', 'fas', 'fa-folder'); // Using Font Awesome folder icon
+                    link.prepend(folderIcon);
+                }
+
                 listItem.appendChild(link);
                 filesList.appendChild(listItem);
             });
