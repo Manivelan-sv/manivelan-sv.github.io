@@ -4,14 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publication Files</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <style>
+        /* Style for modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            overflow: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Publication Files</h1>
     <ul id="files"></ul>
 
-    <div id="file-content"></div>
+    <!-- Modal for displaying content -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="file-content"></div>
+        </div>
+    </div>
 
     <script>
+        // Initialize syntax highlighting
+        hljs.highlightAll();
+
         // GitHub repository details
         const owner = "Manivelan-sv";
         const repo = "manivelan-sv.github.io";
@@ -47,11 +96,28 @@
             fetch(fileUrl)
                 .then(response => response.text())
                 .then(content => {
-                    document.getElementById('file-content').innerHTML = `<pre>${content}</pre>`;
+                    // Display content in modal
+                    document.getElementById('file-content').innerHTML = content;
+                    // Show modal
+                    document.getElementById('myModal').style.display = "block";
+                    // Highlight code syntax
+                    hljs.highlightAll();
                 })
                 .catch(error => {
                     console.error('Error fetching file content:', error);
                 });
+        }
+
+        // Close modal when clicking on close button
+        document.getElementsByClassName('close')[0].onclick = function() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        // Close modal when clicking outside the modal
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('myModal')) {
+                document.getElementById('myModal').style.display = "none";
+            }
         }
     </script>
 </body>
