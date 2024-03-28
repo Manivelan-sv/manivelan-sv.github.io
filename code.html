@@ -64,31 +64,84 @@
         // GitHub repository details
         const owner = "Manivelan-sv";
         const repo = "manivelan-sv.github.io";
-        const path = "assets/collabators";
+        const path = "code";
 
         // GitHub API endpoint to fetch contents of a directory
         const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
 
-        // Fetch files from GitHub API
+        // Fetch files and directories from GitHub API
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
-                // Loop through files and create list items
-                data.forEach(file => {
-                    if (file.type === "file") {
-                        const listItem = document.createElement('li');
-                        const link = document.createElement('a');
-                        link.textContent = file.name;
-                        link.href = "#";
-                        link.onclick = () => displayFileContent(file.path);
-                        listItem.appendChild(link);
-                        document.getElementById('files').appendChild(listItem);
-                    }
+                // Loop through files and directories
+                data.forEach(item => {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.textContent = item.name;
+                    link.href = "#";
+                    link.onclick = () => {
+                        if (item.type === "file") {
+                            displayFileContent(item.path);
+                        } else if (item.type === "dir") {
+                            // Open directory
+                            fetchDirectoryContents(item.url);
+                        }
+                    };
+                    listItem.appendChild(link);
+                    document.getElementById('files').appendChild(listItem);
                 });
             })
             .catch(error => {
                 console.error('Error fetching files:', error);
             });
+
+        // Function to fetch contents of a directory
+        function fetchDirectoryContents(url) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Clear existing list
+                    document.getElementById('files').innerHTML = "";
+                    // Add ".." to navigate back to parent directory
+                    const backLink = document.createElement('li');
+                    const backLinkA = document.createElement('a');
+                    backLinkA.textContent = "..";
+                    backLinkA.href = "#";
+                    backLinkA.onclick = () => {
+                        fetch(apiUrl)
+                            .then(response => response.json())
+                            .then(data => {
+                                renderFilesAndDirectories(data);
+                            });
+                    };
+                    backLink.appendChild(backLinkA);
+                    document.getElementById('files').appendChild(backLink);
+                    // Render files and directories
+                    renderFilesAndDirectories(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching directory contents:', error);
+                });
+        }
+
+        // Function to render files and directories
+        function renderFilesAndDirectories(data) {
+            data.forEach(item => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.textContent = item.name;
+                link.href = "#";
+                link.onclick = () => {
+                    if (item.type === "file") {
+                        displayFileContent(item.path);
+                    } else if (item.type === "dir") {
+                        fetchDirectoryContents(item.url);
+                    }
+                };
+                listItem.appendChild(link);
+                document.getElementById('files').appendChild(listItem);
+            });
+        }
 
         // Function to display file content
         function displayFileContent(filePath) {
